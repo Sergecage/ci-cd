@@ -1,44 +1,21 @@
-name: Deploy
+steps:
+  - uses: actions/checkout@v4
 
-on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
+  - uses: actions/setup-node@v4
+    with:
+      node-version: 20
+      cache: npm
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+  - run: npm ci
 
-concurrency:
-  group: pages
-  cancel-in-progress: true
+  - run: npm run build
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  - name: Configure GitHub Pages
+    uses: actions/configure-pages@v5
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  - uses: actions/upload-pages-artifact@v3
+    with:
+      path: ./dist
 
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - run: npm ci
-
-      - run: npm run build
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
-
-      - id: deployment
-        uses: actions/deploy-pages@v4
+  - id: deployment
+    uses: actions/deploy-pages@v4
