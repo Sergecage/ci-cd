@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Check branch name
         run: |
-          BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+          BRANCH=${GITHUB_HEAD_REF}
 
           echo "Branch: $BRANCH"
 
