@@ -14,7 +14,9 @@ on:
       - reopened
 
 permissions:
- contents: read 
+ contents: read
+ pages: write
+ id-token: write 
 
 jobs:
   validate:
