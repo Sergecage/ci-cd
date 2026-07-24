@@ -9,13 +9,13 @@ on:
     branches:
       - main
     types: 
-      -opened
-      -synchronize
-      -reopened
+      - opened
+      - synchronize
+      - reopened
 
 permissions:
  contents: read 
- 
+
 jobs:
   validate:
     runs-on: ubuntu-latest
