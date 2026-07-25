@@ -6,4 +6,4 @@ CI/CD Setup, Accessibility Improvements (A11y), and Performance Optimization.
 Have to install plenty of dependecies
 
 #Notes
-I 'm going to use github actions
+I 'm going to use github actions. Some jobs failed so I have to re-run them.
