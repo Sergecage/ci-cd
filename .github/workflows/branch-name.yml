@@ -2,7 +2,16 @@ name: Branch Name Check
 
 on:
   push:
+    branches:
+      - "feature/**"
+
   pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 jobs:
   check-branch:
@@ -11,7 +20,7 @@ jobs:
     steps:
       - name: Check branch name
         run: |
-          BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+          BRANCH=${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}
 
           echo "Branch: $BRANCH"
 
